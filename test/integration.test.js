@@ -13,8 +13,8 @@ describe("Auth integration tests", () => {
 
   it("should register a new user", async () => {
     const response = await request(app).post("/register").send({
-      username: "admin8",
-      email: "admin8@gmail.com",
+      username: "admin",
+      email: "admin@gmail.com",
       password: "123",
     });
     expect(response.status).toBe(201);
@@ -24,7 +24,7 @@ describe("Auth integration tests", () => {
 
   it("should log in an existing user", async () => {
     const response = await request(app).post("/login").send({
-      email: "admin8@gmail.com",
+      email: "admin@gmail.com",
       password: "123",
     });
     expect(response.status).toBe(200);
@@ -37,7 +37,7 @@ describe("Auth integration tests", () => {
       .set("Authorization", `Bearer ${token}`);
 
     expect(response.status).toBe(200);
-    expect(response.body).toHaveProperty("userData.username", "admin8");
+    expect(response.body).toHaveProperty("userData.username", "admin");
   });
 
   it("should fail to access protected profile route with invalid token", async () => {
